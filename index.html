@@ -3,272 +3,295 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orion Medical Logistics | Global Dashboard</title>
+    <title>Orion Medical Logistics | Premier STAT Transport</title>
     <meta name="description" content="Orion Medical Logistics. Secure, HIPAA Compliant, Radioactive Certified Transport. Newark, NJ." />
-    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="icon" href="https://i.postimg.cc/p9158Cn3/image.png" type="image/png">
     
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg: #030508;
-            --surface: rgba(20, 30, 48, 0.6);
-            --surface-hover: rgba(30, 45, 70, 0.8);
-            --border: rgba(255, 255, 255, 0.1);
-            --cyan: #00f0ff;
-            --blue: #2962ff;
-            --text: #e0e6ed;
-            --muted: #94a3b8;
-            --radius: 16px;
-            --glow: 0 0 20px rgba(0, 240, 255, 0.15);
+            /* Nuevo esquema de color: Más Azul, Más Vivo, Más Profesional */
+            --bg-main: #0f172a; /* Azul oscuro pizarra */
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --surface: rgba(30, 41, 59, 0.7); /* Cristal azulado */
+            --surface-hover: rgba(51, 65, 85, 0.9);
+            --accent-blue: #3b82f6; /* Azul eléctrico vibrante */
+            --accent-cyan: #06b6d4; /* Cian moderno */
+            --text-bright: #ffffff;
+            --text-muted: #94a3b8;
+            --radius: 24px; /* Bordes más redondeados y modernos */
+            --shadow-glow: 0 10px 30px -10px rgba(59, 130, 246, 0.5);
         }
 
         * { box-sizing: border-box; }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-bright);
+            min-height: 100vh;
+            padding: 20px 0;
+            /* Fondo sutil con patrón tecnológico */
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(41, 98, 255, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.05), transparent 25%);
-            color: var(--text);
-            padding-bottom: 40px;
+                radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
+            background-attachment: fixed;
         }
 
         a { text-decoration: none; color: inherit; }
 
         .container {
-            max-width: 800px;
+            max-width: 700px; /* Un poco más estrecho para look de "App" */
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
-        /* HEADER */
-        .header {
+        /* === ANIMACIONES === */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(6, 182, 212, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+        }
+
+        /* === HEADER CON LOGO === */
+        .brand-header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
             margin-bottom: 30px;
-            padding: 15px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            backdrop-filter: blur(10px);
+            padding-top: 20px;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand img {
-            height: 40px;
+        .logo-img {
+            height: 80px; /* Logo más grande */
             width: auto;
+            filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.3));
+            margin-bottom: 10px;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .brand-text {
-            font-weight: 800;
-            font-size: 18px;
-            letter-spacing: 1px;
+        .company-title {
+            font-weight: 900;
+            font-size: 28px;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, var(--text-bright), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #00ff88;
-            background: rgba(0, 255, 136, 0.1);
-            padding: 6px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 255, 136, 0.2);
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #00ff88;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #00ff88;
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink { 50% { opacity: 0.5; } }
-
-        /* PROFILE CARD */
-        .profile-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-            border: 1px solid var(--border);
+        /* === TARJETA DE PERFIL PRO === */
+        .profile-glass {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius);
-            padding: 25px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-glow);
+            margin-bottom: 30px;
             position: relative;
             overflow: hidden;
         }
 
-        .profile-card::before {
-            content: '';
+        /* Status Activo Animado */
+        .online-status {
             position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--cyan);
-            box-shadow: 0 0 15px var(--cyan);
-        }
-
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--cyan);
-            box-shadow: var(--glow);
-        }
-
-        .profile-info h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        .profile-info .role {
-            color: var(--cyan);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-
-        .profile-info .location {
-            color: var(--muted);
-            font-size: 14px;
-            margin-top: 5px;
+            top: 20px;
+            right: 20px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+        .online-dot {
+            width: 10px; height: 10px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            animation: pulse-glow 2s infinite;
         }
 
-        /* ACTION GRID */
-        .action-grid {
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-blue);
+            padding: 4px; /* Espacio entre foto y borde */
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .user-name {
+            font-size: 32px;
+            font-weight: 900;
+            margin: 15px 0 5px 0;
+        }
+        
+        .user-role {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        /* === BOTONES DE ACCIÓN RÁPIDA === */
+        .action-buttons {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr; /* Dos columnas */
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .btn {
+            padding: 18px;
+            border-radius: 18px;
+            font-weight: 800;
+            font-size: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 16px;
-            border-radius: 12px;
-            font-weight: 700;
-            transition: all 0.2s ease;
-            cursor: pointer;
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
             text-transform: uppercase;
-            font-size: 14px;
+            letter-spacing: 0.5px;
         }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.02); /* Se levanta y crece un poco */
+        }
+        .btn:active { transform: scale(0.98); }
 
         .btn-primary {
-            background: var(--blue);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
             color: white;
-            box-shadow: 0 4px 15px rgba(41, 98, 255, 0.4);
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.5);
             border: none;
         }
-
-        .btn-primary:hover { transform: translateY(-2px); background: #1e50ff; }
-
+        
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            color: var(--text);
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-bright);
+        }
+        .btn-secondary:hover { background: var(--surface-hover); }
+        
+        /* WhatsApp color específico */
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(37, 211, 102, 0.4);
         }
 
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
-
-        /* CERTIFICATIONS (New Section) */
-        .section-title {
-            font-size: 12px;
+        /* === SECCIÓN DE CERTIFICACIONES (ANIMADA) === */
+        .section-header {
+            font-size: 14px;
+            font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--muted);
-            margin-bottom: 15px;
-            padding-left: 5px;
-            border-left: 2px solid var(--border);
-            margin-top: 40px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        .section-header::after {content: ""; flex: 1; height: 1px; background: rgba(255,255,255,0.1);}
 
         .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr); /* 2 por fila */
+            gap: 15px;
+            margin-bottom: 40px;
         }
 
-        .cert-card {
+        .cert-item {
             background: var(--surface);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: 0.2s;
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
         }
 
-        .cert-card:hover {
-            border-color: var(--cyan);
+        .cert-item:hover {
             background: var(--surface-hover);
+            border-color: var(--accent-cyan);
+            transform: translateX(5px);
         }
 
-        .cert-icon { font-size: 24px; margin-bottom: 8px; display: block; }
-        .cert-name { font-size: 13px; font-weight: bold; color: var(--text); }
-        .cert-id { font-size: 10px; color: var(--muted); margin-top: 4px; }
+        /* La magia de la animación del icono */
+        .cert-icon-box {
+            font-size: 32px;
+            background: rgba(255, 255, 255, 0.05);
+            width: 60px; height: 60px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        /* Al pasar el mouse sobre la tarjeta, el icono flota */
+        .cert-item:hover .cert-icon-box {
+            animation: float 2s ease-in-out infinite;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: white;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+        }
 
-        /* VEHICLE & LOGISTICS */
+        .cert-details h3 { margin: 0; font-size: 16px; font-weight: 800; }
+        .cert-details p { margin: 5px 0 0 0; font-size: 12px; color: var(--text-muted); }
+
+        /* === VEHÍCULO === */
         .vehicle-card {
-            background: var(--surface);
             border-radius: var(--radius);
             overflow: hidden;
-            border: 1px solid var(--border);
-            margin-top: 15px;
+            position: relative;
+            box-shadow: var(--shadow-glow);
         }
-
+        
         .vehicle-img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             display: block;
-            opacity: 0.9;
+            /* Filtro azulado sutil para que combine */
+            filter: contrast(1.1) sepia(20%) hue-rotate(180deg) saturate(1.5) brightness(0.9);
+            transition: filter 0.5s ease;
         }
+        .vehicle-card:hover .vehicle-img { filter: none; /* Vuelve a color normal al pasar mouse */ }
 
-        .vehicle-details {
+        .vehicle-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, #0f172a, transparent);
             padding: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
         }
-
-        .detail-item div:first-child { font-size: 11px; color: var(--muted); text-transform: uppercase; }
-        .detail-item div:last-child { font-size: 15px; font-weight: bold; color: var(--cyan); margin-top: 2px; }
+        .vehicle-title { font-weight: 900; font-size: 20px; }
+        .vehicle-sub { color: var(--accent-cyan); font-weight: 700; }
 
         /* FOOTER */
         .footer {
-            margin-top: 50px;
             text-align: center;
-            color: var(--muted);
+            padding: 40px 0 20px;
+            color: var(--text-muted);
             font-size: 12px;
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-        }
-
-        /* Responsive Fixes */
-        @media (max-width: 600px) {
-            .profile-card { flex-direction: column; text-align: center; }
-            .profile-card::before { width: 100%; height: 4px; }
-            .header { flex-direction: column; gap: 10px; }
+            font-weight: 700;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -276,90 +299,82 @@
 
 <div class="container">
 
-    <div class="header">
-        <div class="brand">
-            <img src="logo.png" alt="Orion Logo">
-            <div class="brand-text">Orion Medical<br><span style="color:var(--cyan)">Logistics</span></div>
+    <div class="brand-header">
+        <img src="https://i.postimg.cc/p9158Cn3/image.png" alt="Orion Logo" class="logo-img">
+        <div class="company-title">Orion Medical Logistics</div>
+    </div>
+
+    <div class="profile-glass">
+        <div class="online-status">
+            <span class="online-dot"></span> 24/7 ACTIVE
         </div>
-        <div class="status-badge">
-            <span class="status-dot"></span> SYSTEM ONLINE
+        <img src="https://i.postimg.cc/F1k3yMpf/image.jpg" alt="Orlando Guzman" class="profile-pic">
+        <div class="user-name">Orlando Guzmán</div>
+        <div class="user-role">CEO / Logistics Commander</div>
+        <div style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">
+            📍 Newark, NJ Base • Nationwide Service
         </div>
     </div>
 
-    <div class="profile-card">
-        <img src="perfil.jpg" alt="Orlando Guzman" class="profile-img">
-        <div class="profile-info">
-            <h1>Orlando Guzmán</h1>
-            <div class="role">CEO & Logistics Commander</div>
-            <div class="location">📍 Newark, NJ • Est. 2024</div>
-        </div>
-    </div>
-
-    <div class="action-grid">
+    <div class="action-buttons">
         <a href="tel:5514269630" class="btn btn-primary">
-            📞 LLAMAR AHORA
+            <span>📞</span> Llamar STAT
         </a>
-        <a href="mailto:OG@orionmlg.com" class="btn btn-secondary">
-            ✉️ EMAIL STAT
+        <a href="mailto:OG@orionmlg.com" class="btn btn-primary">
+            <span>✉️</span> Email Urgente
         </a>
-        <a href="#" class="btn btn-secondary" onclick="alert('Servicio 24/7 Activo - Enviando ubicación...')">
-            📍 RUTAS
+        <a href="https://wa.me/15514269630" class="btn btn-whatsapp">
+            <span style="font-size: 20px;">💬</span> WhatsApp
         </a>
-        <a href="#" class="btn btn-secondary" style="border-color: #25D366; color:#25D366">
-            💬 WHATSAPP
+        <a href="#" class="btn btn-secondary" onclick="alert('Abriendo tarjeta de contacto...')">
+            <span>📲</span> Guardar Contacto
         </a>
     </div>
 
-    <div class="section-title">Credenciales & Seguridad</div>
+    <div class="section-header">Credenciales & Seguridad</div>
     <div class="cert-grid">
-        <div class="cert-card">
-            <span class="cert-icon">☢️</span>
-            <div class="cert-name">Radioactive Materials</div>
-            <div class="cert-id">DOT Class 7 Certified</div>
+        <div class="cert-item">
+            <div class="cert-icon-box">☢️</div>
+            <div class="cert-details">
+                <h3>Radioactive Mat.</h3>
+                <p>DOT Class 7 Certified Handler</p>
+            </div>
         </div>
-        <div class="cert-card">
-            <span class="cert-icon">🔒</span>
-            <div class="cert-name">HIPAA Compliant</div>
-            <div class="cert-id">Medical Data Privacy</div>
+        <div class="cert-item">
+            <div class="cert-icon-box">🔒</div>
+            <div class="cert-details">
+                <h3>HIPAA Compliant</h3>
+                <p>Protected Health Information</p>
+            </div>
         </div>
-        <div class="cert-card">
-            <span class="cert-icon">🩸</span>
-            <div class="cert-name">Bloodborne Pathogens</div>
-            <div class="cert-id">OSHA Safety Shield</div>
+        <div class="cert-item">
+            <div class="cert-icon-box">🩸</div>
+            <div class="cert-details">
+                <h3>Bloodborne Path.</h3>
+                <p>OSHA Safety Certified</p>
+            </div>
         </div>
-        <div class="cert-card">
-            <span class="cert-icon">✈️</span>
-            <div class="cert-name">TSA / STA</div>
-            <div class="cert-id">Airport Security Clearance</div>
+        <div class="cert-item">
+            <div class="cert-icon-box">✈️</div>
+            <div class="cert-details">
+                <h3>TSA / STA</h3>
+                <p>Airport Security Cleared</p>
+            </div>
         </div>
     </div>
 
-    <div class="section-title">Unidad de Transporte</div>
+    <div class="section-header">Unidad De Respuesta</div>
     <div class="vehicle-card">
-        <img src="carro.jpg" alt="Fleet Vehicle" class="vehicle-img">
-        <div class="vehicle-details">
-            <div class="detail-item">
-                <div>Modelo</div>
-                <div>Chevy Traverse 2018</div>
-            </div>
-            <div class="detail-item">
-                <div>Capacidad</div>
-                <div>Large Cargo / Coolers</div>
-            </div>
-            <div class="detail-item">
-                <div>Color</div>
-                <div>Blanco (Sterile)</div>
-            </div>
-            <div class="detail-item">
-                <div>Status</div>
-                <div>Ready for Deployment</div>
-            </div>
+        <img src="https://i.postimg.cc/dZJF0PtW/image.jpg" alt="Chevy Traverse" class="vehicle-img">
+        <div class="vehicle-overlay">
+            <div class="vehicle-title">Chevrolet Traverse</div>
+            <div class="vehicle-sub">Primary Response Unit • Sterile Interior</div>
         </div>
     </div>
 
     <div class="footer">
-        <p>ORION MEDICAL LOGISTICS LLC © 2026</p>
-        <p style="opacity: 0.5">Secure • Reliable • On Time</p>
+        ORION MEDICAL LOGISTICS LLC © 2026<br>
+        SECURE • PUNCTUAL • PROFESSIONAL
     </div>
 
 </div>
