@@ -11,20 +11,27 @@
 
     <style>
         :root {
-            /* Nuevo esquema de color: Más Azul, Más Vivo, Más Profesional */
-            --bg-main: #0f172a; /* Azul oscuro pizarra */
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            --surface: rgba(30, 41, 59, 0.7); /* Cristal azulado */
-            --surface-hover: rgba(51, 65, 85, 0.9);
-            --accent-blue: #3b82f6; /* Azul eléctrico vibrante */
-            --accent-cyan: #06b6d4; /* Cian moderno */
-            --text-bright: #ffffff;
-            --text-muted: #94a3b8;
-            --radius: 24px; /* Bordes más redondeados y modernos */
-            --shadow-glow: 0 10px 30px -10px rgba(59, 130, 246, 0.5);
+            /* FONDO MAESTRO: Casi negro para máximo contraste */
+            --bg-main: #020408; 
+            --bg-gradient: linear-gradient(180deg, #000000 0%, #0a0f1c 100%);
+            
+            /* SUPERFICIES: Un poco más claras para separar secciones */
+            --surface: rgba(20, 25, 35, 0.85); 
+            --surface-hover: rgba(40, 50, 70, 0.95);
+            
+            /* COLORES DE ACENTO */
+            --accent-blue: #2563eb; 
+            --accent-cyan: #00e5ff; /* Cyan brillante para resaltar */
+            
+            /* TEXTO */
+            --text-bright: #ffffff; /* Blanco Puro */
+            --text-muted: #cbd5e1; /* Gris claro (antes era muy oscuro) */
+            
+            --radius: 20px;
+            --shadow-glow: 0 0 25px rgba(0, 229, 255, 0.15);
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             margin: 0;
@@ -33,17 +40,17 @@
             color: var(--text-bright);
             min-height: 100vh;
             padding: 20px 0;
-            /* Fondo sutil con patrón tecnológico */
+            /* Patrón de malla sutil de fondo */
             background-image: 
-                radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
-            background-attachment: fixed;
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
         a { text-decoration: none; color: inherit; }
 
         .container {
-            max-width: 700px; /* Un poco más estrecho para look de "App" */
+            max-width: 650px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -51,247 +58,210 @@
         /* === ANIMACIONES === */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
             100% { transform: translateY(0px); }
         }
 
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(6, 182, 212, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
-        }
-
-        /* === HEADER CON LOGO === */
+        /* === HEADER === */
         .brand-header {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             padding-top: 20px;
         }
 
         .logo-img {
-            height: 80px; /* Logo más grande */
+            height: 90px; /* Logo grande */
             width: auto;
-            filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.3));
-            margin-bottom: 10px;
+            filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.4));
+            margin-bottom: 15px;
             animation: float 6s ease-in-out infinite;
         }
 
         .company-title {
             font-weight: 900;
-            font-size: 28px;
+            font-size: 26px; /* Letra grande */
             text-transform: uppercase;
             letter-spacing: 2px;
-            background: linear-gradient(to right, var(--text-bright), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.6); /* Resplandor para leerse bien */
+            text-align: center;
+            line-height: 1.2;
         }
 
-        /* === TARJETA DE PERFIL PRO === */
+        /* === PERFIL PRO === */
         .profile-glass {
             background: var(--surface);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: var(--radius);
-            padding: 30px;
+            padding: 30px 20px;
             text-align: center;
             box-shadow: var(--shadow-glow);
             margin-bottom: 30px;
             position: relative;
-            overflow: hidden;
         }
 
-        /* Status Activo Animado */
         .online-status {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            background: rgba(6, 182, 212, 0.1);
-            padding: 6px 14px;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #00ff9d; /* Verde brillante */
+            background: rgba(0, 0, 0, 0.6);
+            padding: 5px 10px;
             border-radius: 20px;
-        }
-        .online-dot {
-            width: 10px; height: 10px;
-            background: var(--accent-cyan);
-            border-radius: 50%;
-            animation: pulse-glow 2s infinite;
+            border: 1px solid #00ff9d;
         }
 
         .profile-pic {
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--accent-blue);
-            padding: 4px; /* Espacio entre foto y borde */
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 3px solid var(--accent-cyan);
+            padding: 4px;
+            background: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .user-name {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 900;
             margin: 15px 0 5px 0;
+            color: #ffffff;
         }
         
         .user-role {
             color: var(--accent-cyan);
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 13px;
         }
 
-        /* === BOTONES DE ACCIÓN RÁPIDA === */
+        /* === BOTONES === */
         .action-buttons {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Dos columnas */
-            gap: 15px;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
             margin-bottom: 40px;
         }
 
         .btn {
-            padding: 18px;
-            border-radius: 18px;
+            padding: 16px;
+            border-radius: 16px;
             font-weight: 800;
-            font-size: 15px;
+            font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+            gap: 10px;
+            transition: transform 0.2s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            cursor: pointer;
         }
 
-        .btn:hover {
-            transform: translateY(-5px) scale(1.02); /* Se levanta y crece un poco */
-        }
-        .btn:active { transform: scale(0.98); }
+        .btn:active { transform: scale(0.96); }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            background: linear-gradient(135deg, var(--accent-blue), #00c6ff);
             color: white;
-            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.5);
             border: none;
+            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
         }
         
-        .btn-secondary {
-            background: var(--surface);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-bright);
-        }
-        .btn-secondary:hover { background: var(--surface-hover); }
-        
-        /* WhatsApp color específico */
         .btn-whatsapp {
             background: linear-gradient(135deg, #25d366, #128c7e);
             color: white;
-            box-shadow: 0 10px 20px -5px rgba(37, 211, 102, 0.4);
+            border: none;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
         }
 
-        /* === SECCIÓN DE CERTIFICACIONES (ANIMADA) === */
+        /* === CREDENTIALS === */
         .section-header {
             font-size: 14px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: var(--accent-cyan); /* Títulos en azul brillante */
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
         }
-        .section-header::after {content: ""; flex: 1; height: 1px; background: rgba(255,255,255,0.1);}
 
         .cert-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 por fila */
-            gap: 15px;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
             margin-bottom: 40px;
         }
 
         .cert-item {
             background: var(--surface);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
+            text-align: center;
+            gap: 10px;
         }
 
-        .cert-item:hover {
-            background: var(--surface-hover);
-            border-color: var(--accent-cyan);
-            transform: translateX(5px);
-        }
-
-        /* La magia de la animación del icono */
         .cert-icon-box {
-            font-size: 32px;
-            background: rgba(255, 255, 255, 0.05);
-            width: 60px; height: 60px;
+            font-size: 28px;
+            background: rgba(0, 0, 0, 0.3);
+            width: 50px; height: 50px;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-        /* Al pasar el mouse sobre la tarjeta, el icono flota */
-        .cert-item:hover .cert-icon-box {
-            animation: float 2s ease-in-out infinite;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
-            color: white;
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .cert-details h3 { margin: 0; font-size: 16px; font-weight: 800; }
-        .cert-details p { margin: 5px 0 0 0; font-size: 12px; color: var(--text-muted); }
+        .cert-details h3 { margin: 0; font-size: 14px; font-weight: 800; color: white; }
+        .cert-details p { margin: 4px 0 0 0; font-size: 11px; color: var(--text-muted); }
 
-        /* === VEHÍCULO === */
+        /* === VEHICLE === */
         .vehicle-card {
+            background: #000;
             border-radius: var(--radius);
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
-            box-shadow: var(--shadow-glow);
         }
         
         .vehicle-img {
             width: 100%;
-            height: 220px;
+            height: 200px;
             object-fit: cover;
             display: block;
-            /* Filtro azulado sutil para que combine */
-            filter: contrast(1.1) sepia(20%) hue-rotate(180deg) saturate(1.5) brightness(0.9);
-            transition: filter 0.5s ease;
+            opacity: 0.9;
         }
-        .vehicle-card:hover .vehicle-img { filter: none; /* Vuelve a color normal al pasar mouse */ }
 
         .vehicle-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(to top, #0f172a, transparent);
-            padding: 20px;
+            padding: 15px;
+            background: linear-gradient(to top, #000 0%, #111 100%);
         }
-        .vehicle-title { font-weight: 900; font-size: 20px; }
-        .vehicle-sub { color: var(--accent-cyan); font-weight: 700; }
+        .vehicle-title { font-weight: 900; font-size: 18px; color: white; }
+        .vehicle-sub { color: var(--accent-cyan); font-weight: 700; font-size: 13px; margin-top: 4px; }
 
-        /* FOOTER */
         .footer {
             text-align: center;
             padding: 40px 0 20px;
             color: var(--text-muted);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-size: 11px;
+            opacity: 0.6;
         }
     </style>
 </head>
@@ -306,45 +276,45 @@
 
     <div class="profile-glass">
         <div class="online-status">
-            <span class="online-dot"></span> 24/7 ACTIVE
+            <span>●</span> 24/7 ACTIVE
         </div>
         <img src="https://i.postimg.cc/F1k3yMpf/image.jpg" alt="Orlando Guzman" class="profile-pic">
         <div class="user-name">Orlando Guzmán</div>
         <div class="user-role">CEO / Logistics Commander</div>
-        <div style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">
+        <div style="color: var(--text-muted); font-size: 13px; margin-top: 8px;">
             📍 Newark, NJ Base • Nationwide Service
         </div>
     </div>
 
     <div class="action-buttons">
         <a href="tel:5514269630" class="btn btn-primary">
-            <span>📞</span> Llamar STAT
+            📞 Call Now
         </a>
         <a href="mailto:OG@orionmlg.com" class="btn btn-primary">
-            <span>✉️</span> Email Urgente
+            ✉️ Urgent Email
         </a>
         <a href="https://wa.me/15514269630" class="btn btn-whatsapp">
-            <span style="font-size: 20px;">💬</span> WhatsApp
+            💬 WhatsApp
         </a>
-        <a href="#" class="btn btn-secondary" onclick="alert('Abriendo tarjeta de contacto...')">
-            <span>📲</span> Guardar Contacto
+        <a href="#" class="btn btn-secondary" onclick="alert('Contact saved to device.')">
+            📲 Save Contact
         </a>
     </div>
 
-    <div class="section-header">Credenciales & Seguridad</div>
+    <div class="section-header">Credentials & Safety</div>
     <div class="cert-grid">
         <div class="cert-item">
             <div class="cert-icon-box">☢️</div>
             <div class="cert-details">
                 <h3>Radioactive Mat.</h3>
-                <p>DOT Class 7 Certified Handler</p>
+                <p>DOT Class 7 Certified</p>
             </div>
         </div>
         <div class="cert-item">
             <div class="cert-icon-box">🔒</div>
             <div class="cert-details">
                 <h3>HIPAA Compliant</h3>
-                <p>Protected Health Information</p>
+                <p>Protected Data Handler</p>
             </div>
         </div>
         <div class="cert-item">
@@ -363,12 +333,12 @@
         </div>
     </div>
 
-    <div class="section-header">Unidad De Respuesta</div>
+    <div class="section-header">Response Unit</div>
     <div class="vehicle-card">
         <img src="https://i.postimg.cc/dZJF0PtW/image.jpg" alt="Chevy Traverse" class="vehicle-img">
         <div class="vehicle-overlay">
             <div class="vehicle-title">Chevrolet Traverse</div>
-            <div class="vehicle-sub">Primary Response Unit • Sterile Interior</div>
+            <div class="vehicle-sub">Primary Unit • Sterile Interior • Cooler Ready</div>
         </div>
     </div>
 
@@ -378,6 +348,28 @@
     </div>
 
 </div>
+
+<script>
+    // Este script espera el primer clic del usuario para hablar
+    // porque los navegadores bloquean el audio automático.
+    let hasSpoken = false;
+
+    document.addEventListener('click', function() {
+        if (!hasSpoken) {
+            // Verifica si el navegador soporta hablar
+            if ('speechSynthesis' in window) {
+                const msg = new SpeechSynthesisUtterance();
+                msg.text = "Welcome to Orion Medical Logistics. Secure systems online.";
+                msg.lang = 'en-US'; // Voz en inglés
+                msg.rate = 0.9; // Un poco más lento y claro
+                msg.pitch = 1;
+                
+                window.speechSynthesis.speak(msg);
+                hasSpoken = true; // Para que no lo repita a cada rato
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
