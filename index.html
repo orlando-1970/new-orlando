@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orion Medical Logistics | 24/7 STAT Transport</title>
+  <meta name="description" content="Orion Medical Logistics — 24/7 STAT medical transportation. Newark, NJ. Secure, punctual, temperature-aware logistics." />
+  <style>
+    :root{
+      --bg:#05070f;
+      --card:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.12);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.72);
+      --cyan:#00d6ff;
+      --blue:#2e6cff;
+      --glow:0 0 24px rgba(0,214,255,.22);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(46,108,255,.18), transparent 60%),
+                  radial-gradient(900px 600px at 90% 20%, rgba(0,214,255,.12), transparent 55%),
+                  linear-gradient(180deg, #040611 0%, #05070f 55%, #040611 100%);
+      color:var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1100px; margin:0 auto; padding:24px}
+    .topbar{
+      display:flex; gap:14px; align-items:center; justify-content:space-between;
+      padding:14px 16px; border:1px solid var(--line); border-radius:18px;
+      background:rgba(0,0,0,.35); backdrop-filter: blur(14px);
+      box-shadow: var(--glow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; min-width:240px;
+    }
+    .brand img{height:44px; width:auto; display:block}
+    .badge{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px; border:1px solid rgba(0,214,255,.25);
+      background:rgba(0,214,255,.06); border-radius:16px;
+      box-shadow:0 0 18px rgba(0,214,255,.12);
+      font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:11px;
+      white-space:nowrap;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:#22ff88; box-shadow:0 0 14px rgba(34,255,136,.65);
+      animation:pulse 1.6s infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1); opacity:1}
+      50%{transform:scale(1.35); opacity:.65}
+    }
+    .hero{
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:
+        linear-gradient(135deg, rgba(46,108,255,.18), rgba(0,214,255,.10)),
+        rgba(255,255,255,.03);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(650px 300px at 20% 20%, rgba(0,214,255,.18), transparent 70%),
+                  radial-gradient(700px 340px at 85% 35%, rgba(46,108,255,.18), transparent 70%);
+      pointer-events:none;
+    }
+    .heroInner{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      padding:26px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .heroInner{grid-template-columns:1fr}
+      .brand{min-width:auto}
+    }
+
+    .glass{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      backdrop-filter: blur(18px);
+    }
+
+    .profile{
+      padding:20px;
+      display:flex; gap:16px; align-items:center;
+    }
+    .profile img{
+      width:96px; height:96px; border-radius:18px;
+      object-fit:cover; border:1px solid rgba(0,214,255,.35);
+      box-shadow:0 0 18px rgba(0,214,255,.14);
+    }
+    .name{font-size:26px; font-weight:900; letter-spacing:-.02em}
+    .role{color:var(--cyan); font-weight:800; text-transform:uppercase; letter-spacing:.18em; font-size:11px; margin-top:4px}
+    .meta{margin-top:8px; color:var(--muted); font-size:13px; line-height:1.5}
+    .meta b{color:var(--text)}
+    .kpis{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:12px; margin-top:12px;
+    }
+    .kpi{
+      padding:14px 14px;
+      border-radius:18px;
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .kpi .t{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.14em; font-weight:800}
+    .kpi .v{font-size:18px; font-weight:900; margin-top:6px}
+    .cta{
+      display:flex; flex-wrap:wrap; gap:12px; margin-top:16px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:14px 16px;
+      border-radius:18px;
+      font-weight:900;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      min-width: 180px;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.10)}
+    .btnPrimary{
+      background:linear-gradient(135deg, rgba(46,108,255,.95), rgba(0,214,255,.70));
+      border-color:rgba(0,214,255,.45);
+      box-shadow:0 0 20px rgba(0,214,255,.16);
+    }
+    .btnPrimary:hover{background:linear-gradient(135deg, rgba(46,108,255,1), rgba(0,214,255,.82))}
+    .small{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.5}
+    .rightCol{
+      display:flex; flex-direction:column; gap:12px;
+    }
+    .cardPad{padding:18px}
+    .title{
+      font-size:14px; font-weight:900; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--cyan);
+      margin:0 0 10px 0;
+    }
+    .p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+    .list{margin:12px 0 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+    }
+    .check{
+      width:18px; height:18px; border-radius:8px;
+      background:rgba(0,214,255,.18);
+      border:1px solid rgba(0,214,255,.35);
+      box-shadow:0 0 14px rgba(0,214,255,.10);
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:16px;
+    }
+    @media (max-width: 900px){ .grid2{grid-template-columns:1fr} }
+    .map{
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      min-height:260px;
+    }
+    footer{
+      padding:26px 0 36px;
+      color:rgba(234,240,255,.55);
+      text-align:center;
+      font-size:12px;
+    }
+    .muteline{opacity:.7}
+    .icon{font-weight:900}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="brand">
+        <!-- Put your logo file in the same folder and name it "logo.png" -->
+        <img src="logo.png" alt="Orion Medical Logistics logo" />
+      </div>
+
+      <div class="badge">
+        <span class="dot"></span>
+        <span>24/7 STAT Response</span>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="heroInner">
+        <div class="glass" style="padding:18px;">
+          <div class="profile">
+            <!-- Put your photo file in the same folder and name it "orlando.jpg" -->
+            <img src="orlando.jpg" alt="Orlando Guzmán" />
+            <div>
+              <div class="name">Orlando Guzmán</div>
+              <div class="role">CEO • Orion Medical Logistics</div>
+              <div class="meta">
+                <div><b>Location:</b> Newark, NJ</div>
+                <div><b>Availability:</b> 24/7</div>
+                <div><b>Vehicle:</b> 2018 Chevrolet Traverse • White</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="t">Service</div>
+              <div class="v">Nationwide</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Response</div>
+              <div class="v">STAT / Urgent</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Hours</div>
+              <div class="v">24/7</div>
+            </div>
+          </div>
+
+          <div class="cta">
+            <a class="btn btnPrimary" href="tel:5514269630" aria-label="Call">
+              <span class="icon">☎</span> Call Now
+            </a>
+            <a class="btn" href="mailto:OG@orionmlg.com?subject=STAT%20Transport%20Request" aria-label="Email">
+              <span class="icon">✉</span> Email
+            </a>
+          </div>
+
+          <div class="small">
+            For urgent STAT requests, call anytime. If you scanned this QR from an ID badge, you’re in the right place.
+          </div>
+        </div>
+
+        <div class="rightCol">
+          <div class="glass cardPad">
+            <h3 class="title">What we do</h3>
+            <p class="p">
+              Orion Medical Logistics provides time-critical medical transportation with a focus on
+              secure handling, punctual delivery, and professional communication from pickup to drop-off.
+            </p>
+            <ul class="list">
+              <li class="li"><span class="check"></span><span><b>Secure handling</b> for sensitive and critical shipments.</span></li>
+              <li class="li"><span class="check"></span><span><b>Clear status updates</b> and reliable coordination.</span></li>
+              <li class="li"><span class="check"></span><span><b>24/7 availability</b> based in Newark, NJ.</span></li>
+            </ul>
+          </div>
+
+          <div class="glass cardPad">
+            <h3 class="title">Quick details</h3>
+            <p class="p">
+              <span class="mono">Phone:</span> 551-426-9630<br/>
+              <span class="mono">Email:</span> OG@orionmlg.com<br/>
+              <span class="mono">Base:</span> Newark, NJ (optionally: 127 Irvine Turner Blvd)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid2">
+      <div class="glass cardPad">
+        <h3 class="title">Service area</h3>
+        <p class="p">
+          Newark (EWR) + regional airports, medical facilities, and urgent routes.
+          Nationwide coverage available depending on mission requirements.
+        </p>
+        <div class="small muteline">Tip: You can change this text later to match exactly what Orlando offers.</div>
+      </div>
+
+      <div class="map">
+        <!-- Newark, NJ map -->
+        <iframe
+          title="Newark, NJ"
+          width="100%"
+          height="100%"
+          style="border:0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Newark%20NJ&output=embed">
+        </iframe>
+      </div>
+    </div>
+
+    <footer>
+      <div>Orion Medical Logistics • Newark, NJ • USA</div>
+      <div class="muteline">Secure • Punctual • Available 24/7</div>
+    </footer>
+
+  </div>
+</body>
+</html>
